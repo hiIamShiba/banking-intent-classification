@@ -75,4 +75,3 @@ Video hướng dẫn chi tiết cách cài đặt, thực hiện huấn luyện 
 
 **Giảng viên hướng dẫn**: TS. Nguyễn Hồng Bửu Long
 **Đơn vị**: Khoa Công nghệ Thông tin - Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM
-"""

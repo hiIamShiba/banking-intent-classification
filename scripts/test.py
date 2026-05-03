@@ -1,4 +1,6 @@
 import yaml
+import pandas as pd
+from sklearn.metrics import accuracy_score
 from unsloth import FastLanguageModel
 
 
@@ -144,8 +146,30 @@ class IntentClassification:
 if __name__ == "__main__":
     classifier = IntentClassification(model_path="configs/inference.yaml")
 
-    test_message = "I lost my credit card yesterday, can you help me get a new one?"
-    print(f"Input Message: {test_message}")
+    with open("configs/inference.yaml", "r", encoding="utf-8") as file:
+        config = yaml.safe_load(file)
+    test_data_path = config["test_path"]
+    print(f"Loading test data from {test_data_path}...")
 
-    predicted_intent = classifier(test_message)
-    print(f"Predicted Intent: {predicted_intent}")
+    try:
+        df_test = pd.read_csv(test_data_path)
+    except FileNotFoundError:
+        print(f"File not found: {test_data_path}")
+        exit()
+
+    y_true = df_test["intent"].tolist()
+    messages = df_test["text"].tolist()
+    y_pred = []
+
+    total_samples = len(messages)
+    print(f"Evaluating on {total_samples} samples...")
+
+    for idx, msg in enumerate(messages):
+        pred = classifier(msg)
+        y_pred.append(pred)
+
+        if (idx + 1) % 100 == 0 or (idx + 1) == total_samples:
+            print(f"Processed {idx + 1}/{total_samples} samples...")
+
+    accuracy = accuracy_score(y_true, y_pred)
+    print(f"Final Test Accuracy: {accuracy * 100:.2f}%")

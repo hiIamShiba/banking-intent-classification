@@ -18,3 +18,4 @@ venv.bak/
 
 # Model outputs
 models/
+unsloth_compiled_cache/

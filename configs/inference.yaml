@@ -1,0 +1,3 @@
+model_checkpoint_path: "models/banking_intent_model"
+max_seq_length: 512
+test_path: "sample_data/test.csv"

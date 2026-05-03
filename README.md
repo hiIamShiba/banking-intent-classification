@@ -10,9 +10,7 @@ Dự án này tập trung vào việc áp dụng các kỹ thuật fine-tuning �
 
 ## 2. Cấu trúc thư mục
 
-````
-
-```text
+```
 banking-intent-unsloth
 |-- scripts
 |   |-- train.py
@@ -28,7 +26,7 @@ banking-intent-unsloth
 |-- inference.sh
 |-- requirements.txt
 |-- README.md
-````
+```
 
 ## 3. Hướng dẫn thiết lập môi trường
 

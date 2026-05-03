@@ -11,7 +11,7 @@ class IntentClassification:
 
         self.model, self.tokenizer = FastLanguageModel.from_pretrained(
             model_name=checkpoint_dir,
-            max_seq_length=config.get("max_seq_length", 256),
+            max_seq_length=config.get("max_seq_length", 512),
             dtype=None,
             load_in_4bit=True,
         )
@@ -144,7 +144,7 @@ class IntentClassification:
 if __name__ == "__main__":
     classifier = IntentClassification(model_path="configs/inference.yaml")
 
-    test_message = "I lost my credit card yesterday, can you help me get a new one?"
+    test_message = "Please advise what is the exchange rate"
     print(f"Input Message: {test_message}")
 
     predicted_intent = classifier(test_message)
